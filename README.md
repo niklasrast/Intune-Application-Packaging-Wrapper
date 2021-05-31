@@ -1,5 +1,11 @@
 # PowerShell Software Packaging Wrapper
 
+![GitHub repo size](https://img.shields.io/github/repo-size/niklasrast/MEM-Application-Packaging-Wrapper)
+
+![GitHub issues](https://img.shields.io/github/issues-raw/niklasrast/MEM-Application-Packaging-Wrapper)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/niklasrast/MEM-Application-Packaging-Wrapper)
+
 This repo contains an powershell scripts to create an wrapping script in powershell to install, uninstall and detect applications through any software deployment solution. My choose for the software deployment solution is Microsoft Intune. After you´ve created the script to deploy the package you can use it to deploy the application on your Windows 10 clients.
 
 ## Install:
