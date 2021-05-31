@@ -67,5 +67,8 @@ The scripts create a logfile with the name of the .ps1 script in the folder C:\W
 ## Requirements:
 - PowerShell 5.0
 - Windows 10
+ 
+# Feature requests
+If you have an idea for a new feature in this repo, send me an issue with the subject Feature request and write your suggestion in the text. I will then check the feature and implement it if necessary.
 
 Created by @niklasrast 
