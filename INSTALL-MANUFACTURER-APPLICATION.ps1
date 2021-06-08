@@ -33,11 +33,8 @@ if ($install)
     Start-Transcript -path $logFile -Append
         try
         {         
-            #Install EXE
-            Start-Process -FilePath "$PSScriptRoot\" -ArgumentList '' -Wait
-
-            #Install MSI
-            Start-Process -FilePath msiexec.exe -ArgumentList '/i "{}" /qn /l* "C:\Windows\Logs\INSTALL-MANUFACTURER-APPLICATION.log"' -Wait
+            #Install EXE or EXE
+            Start-Process -FilePath "$PSScriptRoot\" -ArgumentList '/i "{}" /qn /l* "C:\Windows\Logs\INSTALL-MANUFACTURER-APPLICATION.log"' -Wait
 
             #Add File or Folder
             Copy-Item -Path "$PSScriptRoot\" -Destination "" -Recurse -Force
