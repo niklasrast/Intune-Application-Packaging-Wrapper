@@ -33,7 +33,6 @@ New-Item -Path "HKLM:\SOFTWARE\OS\" -Name "MANUFACTURER-APPLICATION"
 New-ItemProperty -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Name "Version" -PropertyType "String" -Value "1.0.0" -Force
 ```
 
-
 ## Uninstall:
 Select if you want to uninstall your application based on EXE or MSI. You can also remove File/Folder or RegKey/Value´s. It is posible to use multiple calls in the $uninstall section.
 ```powershell
@@ -54,20 +53,6 @@ Remove-ItemProperty -Path "HKLM:\SOFTWARE\" -Name ""
 
 #Remove package registration in registry
 Remove-Item -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Recurse -Force 
-```
-
-## Detection:
-Select if you want to detect your application based on File/Folder, RegKeyValue or MSI Product Code. Uncomment the other $detection variables. It is NOT posible to use multiple calls in the $detect section.
-```powershell
-#Detect File or Folder
-$detection = (Test-Path -Path "")
-
-#Detect RegKeyValue
-$detection = (Get-ItemProperty -Path "HKLM:\SOFTWARE\" | Select-Object -ExpandProperty "")
-
-#Detect MSI ProductCode
-$detection = (Get-WmiObject -class Win32_Product | Where-Object IdentifyingNumber -match "{}")
-
 ```
 
 ### Parameter definitions:
