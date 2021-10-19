@@ -5,7 +5,6 @@
     .DESCRIPTION
     Install:   C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -install
     Uninstall: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -uninstall
-    Detect:    C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -detect
 
     .ENVIRONMENT
     PowerShell 5.0
@@ -19,14 +18,17 @@ param(
 	[Parameter(Mandatory = $true, ParameterSetName = 'install')]
 	[switch]$install,
 	[Parameter(Mandatory = $true, ParameterSetName = 'uninstall')]
-	[switch]$uninstall,
-	[Parameter(Mandatory = $true, ParameterSetName = 'detect')]
-	[switch]$detect
+	[switch]$uninstall
 )
 
 $ErrorActionPreference = "SilentlyContinue"
 #Use "C:\Windows\Logs" for System Installs and "$env:TEMP" for User Installs
 $logFile = ('{0}\{1}.log' -f "C:\Windows\Logs", [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name))
+
+#Test if registry folder exists
+if ($true -ne (test-Path -Path "HKLM:\SOFTWARE\OS")) {
+    New-Item -Path "HKLM:\SOFTWARE\" -Name "OS" -Force
+}
 
 if ($install)
 {
@@ -45,9 +47,9 @@ if ($install)
             #Add RegKeyValue
             New-ItemProperty "HKLM:\SOFTWARE\" -Name "" -PropertyType "String" -Value "" -Force
 
-            #Register package
-            New-Item -Path "HKLM:\SOFTWARE\OS\" -Name "<PACKAGENAME>"
-            New-ItemProperty -Path "HKLM:\SOFTWARE\OS\<PACKAGENAME>" -Name "Version" -PropertyType "String" -Value "<VERSIONNUMBER>" -Force
+            #Register package in registry
+            New-Item -Path "HKLM:\SOFTWARE\OS\" -Name "MANUFACTURER-APPLICATION"
+            New-ItemProperty -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Name "Version" -PropertyType "String" -Value "1.0.0" -Force
 
             return $true        
         } 
@@ -79,35 +81,13 @@ if ($uninstall)
             #Remove RegKeyValue
             Remove-ItemProperty -Path "HKLM:\SOFTWARE\" -Name ""
 
-            #Remove package registration
-            Remove-Item -Path "HKLM:\SOFTWARE\OS\<PACKAGENAME>" -Recurse -Force 
+            #Remove package registration in registry
+            Remove-Item -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Recurse -Force 
 
             return $true     
         }
         catch
         {
-            $PSCmdlet.WriteError($_)
-            return $false
-        }
-    Stop-Transcript
-}
-
-if ($detect)
-{
-    Start-Transcript -path $logFile -Append
-        try {
-            #Detect File or Folder
-            $detection = (Test-Path -Path "")
-
-            #Detect RegKeyValue
-            $detection = (Get-ItemProperty -Path "HKLM:\SOFTWARE\" | Select-Object -ExpandProperty "")
-
-            #Detect MSI ProductCode
-            $detection = (Get-WmiObject -class Win32_Product | Where-Object IdentifyingNumber -match "{}")
-
-            return $detection
-        }
-        catch {
             $PSCmdlet.WriteError($_)
             return $false
         }
