@@ -55,6 +55,44 @@ Remove-ItemProperty -Path "HKLM:\SOFTWARE\" -Name ""
 Remove-Item -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Recurse -Force 
 ```
 
+### Software distribution (Microsoft Intune)
+####  Details: 
+- Name: Name of the software package
+- Description: Name, Version, UI-language and Download size
+- Publisher: Developer and (Productowner at your company)
+- App Version: Version of the application package
+- Information URL: http://Basis or http://Genehmigungsfrei or http://Genehmigungspflichtig
+- Developer: Name of the packaging agent
+- Owner: Number of the SRQ or INC
+- Notes: Package class (Small, Medium or Complex)
+- Add a picture
+
+![Alt text](https://github.com/niklasrast/MEM-Application-Packaging-Wrapper/blob/main/img/mem-app-01.png "App informations")
+
+#### Install and Uninstall:
+- Install: C:\Windows\SysNative\WindowsPowershell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -install
+- Uninstall: C:\Windows\SysNative\WindowsPowershell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -uninstall
+- Restart behavior: Select on what your package needs
+
+![Alt text](https://github.com/niklasrast/MEM-Application-Packaging-Wrapper/blob/main/img/mem-app-02.png "App informations")
+
+#### Requirements:
+- OS architecture: Select 32- and 64bit
+- Minimum OS version: Select the oldest windows version that you manage
+
+![Alt text](https://github.com/niklasrast/MEM-Application-Packaging-Wrapper/blob/main/img/mem-app-03.png "App informations")
+
+#### Detection
+- Rule format: Manually
+- Type: Registry
+- Key path: HKLM\SOFTWARE\OS\MANUFACTURER-APPLICATION
+- Value: Version
+- Detection: String comparison
+- Operator: Equals
+- Value: Version of the application package
+
+![Alt text](https://github.com/niklasrast/MEM-Application-Packaging-Wrapper/blob/main/img/mem-app-04.png "App informations")
+
 ### Parameter definitions:
 - -install installs the application on the windows client.
 - -uninstall removes the application from the windows client.
