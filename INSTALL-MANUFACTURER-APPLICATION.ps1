@@ -5,12 +5,15 @@
     .DESCRIPTION
     Install:   C:\Windows\SysNative\WindowsPowershell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -install
     Uninstall: C:\Windows\SysNative\WindowsPowershell\v1.0\PowerShell.exe -ExecutionPolicy Bypass -Command .\INSTALL-MANUFACTURER-APPLICATION.ps1 -uninstall
-
+    
     .ENVIRONMENT
     PowerShell 5.0
-
+    
     .AUTHOR
     Niklas Rast
+
+    .CLASS
+    SMALL | MEDIUM | COMPLEX
 #>
 
 [CmdletBinding()]
