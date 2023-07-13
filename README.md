@@ -29,8 +29,8 @@ New-ItemProperty "HKLM:\SOFTWARE\" -Name "" -PropertyType "String" -Value "" -Fo
 ### Package registration in registry
 ```powershell
 #Register package in registry
-New-Item -Path "HKLM:\SOFTWARE\OS\" -Name "MANUFACTURER-APPLICATION"
-New-ItemProperty -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Name "Version" -PropertyType "String" -Value "1.0.0" -Force
+New-Item -Path "HKLM:\SOFTWARE\COMPANY\" -Name "MANUFACTURER-APPLICATION"
+New-ItemProperty -Path "HKLM:\SOFTWARE\COMPANY\MANUFACTURER-APPLICATION" -Name "Version" -PropertyType "String" -Value "1.0.0" -Force
 ```
 
 ## Uninstall:
@@ -52,7 +52,7 @@ Remove-Item -Path "HKLM:\SOFTWARE\" -Recurse -Force
 Remove-ItemProperty -Path "HKLM:\SOFTWARE\" -Name ""
 
 #Remove package registration in registry
-Remove-Item -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Recurse -Force 
+Remove-Item -Path "HKLM:\SOFTWARE\COMPANY\MANUFACTURER-APPLICATION" -Recurse -Force 
 ```
 
 ### Software distribution (Microsoft Intune)
@@ -85,7 +85,7 @@ Remove-Item -Path "HKLM:\SOFTWARE\OS\MANUFACTURER-APPLICATION" -Recurse -Force
 #### Detection
 - Rule format: Manually
 - Type: Registry
-- Key path: HKLM\SOFTWARE\OS\MANUFACTURER-APPLICATION
+- Key path: HKLM\SOFTWARE\COMPANY\MANUFACTURER-APPLICATION
 - Value: Version
 - Detection: String comparison
 - Operator: Equals
