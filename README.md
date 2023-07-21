@@ -8,7 +8,7 @@
 
 This repo contains an powershell scripts to create an wrapping script in powershell to install, uninstall and detect applications through any software deployment solution. My choose for the software deployment solution is Microsoft Intune. After you´ve created the script to deploy the package you can use it to deploy the application on your Windows 10 clients.
 
-Replace MANUFACTURER-APPLICATION with the Manufacturer and Name of the application. This will also be the details for the package registration in HKLM:\SOFTWARE\OS. Update the version number
+Replace MANUFACTURER-APPLICATION with the Manufacturer and Name of the application. This will also be the details for the package registration in HKLM:\SOFTWARE\COMPANY. Update the version number
 
 ## Install:
 Select if you want to install your application based on EXE or MSI. You can also add File/Folder or RegKey/Value´s. It is posible to use multiple calls in the $install section.
