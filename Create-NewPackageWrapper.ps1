@@ -1,19 +1,39 @@
-<#
-    .SYNOPSIS 
-    Create a new copy of the PowerShell Package wrapper script
+<#PSScriptInfo
 
-    .DESCRIPTION
-    Run: .\Create-NewPackageWrapper.ps1
-    
-    .ENVIRONMENT
-    PowerShell 5.0
-    
-    .AUTHOR
-    Niklas Rast
+.VERSION 2.0.0
 
-    .GITHUB
-    https://github.com/niklasrast/Intune-Application-Packaging-Wrapper
+.GUID 6483a776-f557-4e4b-b3dd-04186b3279e2
+
+.AUTHOR Niklas Rast
+
+.COMPANYNAME Niklas Rast
+
+.COPYRIGHT Niklas Rast
+
+.TAGS 
+
+.LICENSEURI 
+
+.PROJECTURI https://github.com/niklasrast/Intune-Application-Packaging-Wrapper
+
+.ICONURI 
+
+.EXTERNALMODULEDEPENDENCIES 
+
+.REQUIREDSCRIPTS 
+
+.EXTERNALSCRIPTDEPENDENCIES 
+
+.RELEASENOTES
+
 #>
+
+<# 
+
+.DESCRIPTION 
+ This script can be used as a wrapper for software packaging. 
+
+#> 
 
 param (
     [Parameter(Mandatory=$true)] 
