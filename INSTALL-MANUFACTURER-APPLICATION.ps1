@@ -26,7 +26,7 @@ param(
 
 $ErrorActionPreference = "SilentlyContinue"
 #Use "C:\Windows\Logs" for System Installs and "$env:TEMP" for User Installs
-$logFile = ('{0}\{1}.log' -f "C:\Windows\Logs", [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name))
+$logFile = ('{0}\{1}.log' -f "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs", [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name))
 
 #Test if registry folder exists
 if ($true -ne (test-Path -Path "HKLM:\SOFTWARE\COMPANY")) {
